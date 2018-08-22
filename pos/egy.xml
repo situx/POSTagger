@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+        <data>
+    <colors>
+	<tagcolor tag="DEFAULT" desc="default" matchorder="12" color="#C0C0C0"/>
+	<tagcolor tag="NE" desc="namedentity" uri="http://purl.org/olia/olia.owl#NamedEntity" matchorder="3" color="#ff2eb5ff"/>
+        <tagcolor tag="NA" desc="nounoradj" matchorder="11" color="#FFFF00"/>
+        <tagcolor tag="NN" desc="noun" uri="http://purl.org/olia/olia.owl#Noun" matchorder="9" color="#895F33"/>
+        <tagcolor tag="CARD" desc="number" uri="http://purl.org/olia/olia.owl#Numeral" matchorder="4" color="#FFC0CB"/>	
+	<tagcolor tag="ADV" desc="adverb" uri="http://purl.org/olia/olia.owl#Adverb" matchorder="5" color="#A5A959"/>
+        <tagcolor tag="VV" desc="verb" uri="http://purl.org/olia/olia.owl#Verb" matchorder="8" color="#00FF00"/>
+        <tagcolor tag="PREP" desc="agent" matchorder="6" color="#00FFFF"/>
+	<tagcolor tag="DET" desc="determinative" uri="http://purl.org/olia/olia.owl#Determiner"  matchorder="10" color="#FFA500"/>
+        <tagcolor tag="PRO" desc="pronoun" uri="http://purl.org/olia/olia.owl#Pronoun" matchorder="1" color="#0000FF"/>
+        <tagcolor tag="PART" desc="particle" matchorder="13" color="#9370DB"/>
+        <tagcolor tag="CONJ" desc="conjunction" uri="http://purl.org/olia/olia.owl#Conjunction" matchorder="2" color="#FF0000"/>
+	<tagcolor tag="POSS" desc="possessive" uri="http://purl.org/olia/olia.owl#PossessivePronoun" matchorder="0" color="#CFF1D1"/>
+    </colors>
+        <dependencies>
+        </dependencies>
+         <groupconfigs>
+         </groupconfigs>
+          <tags>
+          </tags>
+     </data>

@@ -1,0 +1,380 @@
+<?xml version="1.0"?>
+        <data>
+    <colors>
+	<tagcolor tag="DEFAULT" desc="default" matchorder="12" color="#C0C0C0"/>
+	<tagcolor tag="NE" desc="namedentity" uri="http://purl.org/olia/olia.owl#NamedEntity" matchorder="3" color="#ff2eb5ff"/>
+        <tagcolor tag="NA" desc="nounoradj" matchorder="11" color="#FFFF00"/>
+        <tagcolor tag="NN" desc="noun" uri="http://purl.org/olia/olia.owl#Noun" matchorder="9" color="#895F33"/>
+        <tagcolor tag="CARD" desc="number" uri="http://purl.org/olia/olia.owl#Numeral" matchorder="4" color="#FFC0CB"/>	
+	<tagcolor tag="ADV" desc="adverb" uri="http://purl.org/olia/olia.owl#Adverb" matchorder="5" color="#A5A959"/>
+        <tagcolor tag="VV" desc="verb" uri="http://purl.org/olia/olia.owl#Verb" matchorder="8" color="#00FF00"/>
+        <tagcolor tag="PREP" desc="agent" matchorder="6" color="#00FFFF"/>
+	<tagcolor tag="DET" desc="determinative" uri="http://purl.org/olia/olia.owl#Determiner"  matchorder="10" color="#FFA500"/>
+        <tagcolor tag="PRO" desc="pronoun" uri="http://purl.org/olia/olia.owl#Pronoun" matchorder="1" color="#0000FF"/>
+        <tagcolor tag="PART" desc="particle" matchorder="13" color="#9370DB"/>
+        <tagcolor tag="CONJ" desc="conjunction" uri="http://purl.org/olia/olia.owl#Conjunction" matchorder="2" color="#FF0000"/>
+	<tagcolor tag="POSS" desc="possessive" uri="http://purl.org/olia/olia.owl#PossessivePronoun" matchorder="0" color="#CFF1D1"/>
+    </colors>
+        <dependencies>
+      <dependence dependee="PREP" depender="DET"/>
+      <dependence dependee="DET" depender="PRO"/>
+      <dependence dependee="PREP" depender="NE"/>
+      <dependence dependee="CARD" depender="NN"/>
+      <dependence dependee="CARD" depender="NE"/>
+      <dependence dependee="CARD" depender="CONJ"/>
+      <dependence dependee="DET" depender="CONJ"/>
+      <dependence dependee="VV" depender="CONJ"/>
+      <dependence dependee="NN" depender="CONJ"/>
+      <dependence dependee="VV" depender="PART"/>
+      <dependence dependee="NA" depender="NN"/>
+      <dependence dependee="NN" depender="PRO"/>
+      <dependence dependee="DET" depender="NN"/>
+    </dependencies>
+        <groupconfigs>
+      <groupconfig tag="VV" desc="verb">
+	<!-- (la/li/le/lu for past tense or ni for plural) (Vocal before first root) (Vocal after first root) (ta-,te- for Perfect) -->
+	<group tag="VV" desc="verb" name="Case:  First Person Singular" uri="http://purl.org/olia/olia.owl#First" regex="(-mi|-ah(-hi)?|([b-df-hj-np-tv-z]u)?-un|-(a)?llu|-ha-ha-ri|-ha(-ri)?|-ha-hat[i]?|-hat(-i)?|-ha-ha-ru|-ha-ru)$|(𒈪|𒀪(𒄭)?|-[hn]?un|-(a)?llu|𒄩𒄩𒊑|𒄩(𒊑)?|𒄩𒉺(𒄿)?|𒉺(𒄿)?|𒄩𒄩𒊒|𒄩𒊒)$" group="2" case="declination" value="FIRST_SINGULAR"/>
+	<group desc="verb" tag="VV" name="Stem: " regex="(.)*" group="1" case="stem" value="STEM"/>	
+	<group desc="verb" tag="VV" name="Case:  Second Person Singular" uri="http://purl.org/olia/olia.owl#Second" regex="(-[st]i|-s|-(s)?t(a)?|-i|-ti|-ta(t(i)?)?|[-]?at(-i)?|-hut(-i)?)$|(-[st]i|-s|-(s)?t(a)?|-i|-ti|-ta(t(i)?)?|at(i)?|hut(i)?)$" group="2" case="declination" value="SECOND_SINGULAR"/>
+	<group desc="verb" tag="VV" name="Case:  Third Person Plural" regex="([-]?an-zi|-an-ta(-ri)?|([b-df-hj-np-tv-z][ei])?-[ei]r|-an-ta(-ti)?|-an-du|-an-ta-ru)$|(𒀭𒍣|𒀭𒋫(𒊑)?|𒅕|𒀭-tat(𒄿)?|𒀭𒁺|𒀭𒋫𒊒)$" group="2" case="declination" value="THIRD_PLURAL"/>
+	<group desc="verb" tag="VV" name="Case:  Third Person Singular" uri="http://purl.org/olia/olia.owl#Third" regex="(((z|k)?-(z|k)?)?i|[-]?(s)?t(a)?|-(d)?u|-(t)?a-ri(-ta)?|-ta-t(i)?|-ta|-at(i)?|-(t)?a-ru)$|(-(z)?i|-(s)?t(a)?|-(d)?u|-(t)?a-ri(𒋫)?|𒋫-t(𒄿)?|𒋫|𒀜(𒄿)?|-(t)?a𒊒)$" group="2" case="declination" value="THIRD_SINGULAR"/>
+	<group desc="verb" tag="VV" name="Case:  First Person Plural" regex="(-wen(-i)?|-wa-sta(-a-ti)?|-wa-stat)$|(-wen(𒄿)?|𒉿-sta(-a𒋾)?|𒉿-stat)$" group="2" case="declination" value="FIRST_PLURAL"/>
+	<group desc="verb" tag="VV" name="Case:  Second Person Plural" regex="(-te-ni|-du-ma(-ri)?|[t]?-t[ei]n|-du-mat(-i)?)$|(𒋼𒉌|𒁺𒈠(𒊑)?|𒁷|𒁺𒆳(𒄿)?)$" group="2" case="declination" value="SECOND_PLURAL"/>		
+	<!--<group desc="conjunction" tag="CONJ" -->
+	
+	<group tag="VV" desc="verb" name="Tense: Preterite" regex="(-[n]?un|-s|[-]?t(a)?|-wen|[t]?-t[ei]n|-[ei]r)|(𒌦|𒍝|𒋫|-wen|𒁷|𒅕)" case="tense" value="PAST" group="2"/>
+	<group tag="VV" desc="verb" name="Tense: Present" uri="http://purl.org/olia/olia.owl#Present" regex="(-mi|-si|(z)?-zi|-we-ni|-te-ni|-an-zi|-hi|-a-hi|-t(i)?|-ha-ha-ri|-i)|(𒈪|𒅆|[^𒀭]𒍣|𒉿𒉌|𒋼𒉌|𒀭𒍣|𒄭|𒀀𒄭|𒋾|𒄩𒄩𒊑)" case="tense" value="PRESENT" group="2"/>
+        	<group tag="VV" desc="verb" name="Tense: Imperative" regex="(-[a]?llu|-ttu|-t|[^a][^n]-du|-an-tu)|(𒀠𒇻|𒄿|-t|[^𒀭]𒁺|𒉿𒉌|𒀭𒁺)" case="tense" value="IMPERATIVE" group="2"/>
+        <group tag="VV" desc="verb" name="Case:  And/But" regex="(-ya|-a|-ma|𒅀)$" case="wordcase" value="NONE" group="3"/>
+          	  <group tag="VV" desc="verb" name="Case:  Speech" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="([-]?wa-ra|(-)?wa(r)?|𒉿)$" case="wordcase" value="QUOTATIVE" group="4"/>
+                    <group tag="VV" desc="verb" name="Case:  Reflexive" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="((-)?za|𒍝)$" case="wordcase" value="REFLEXIVE" group="5"/>
+            <group tag="VV" desc="verb" name="Case:  Emphasis" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?pat|𒁁)$" case="wordcase" value="EMPHASIZE" group="8"/>
+      </groupconfig>
+      <groupconfig tag="NN" desc="noun">
+            <group tag="NN" desc="noun" name="Stem: " regex="(.)*" case="stem" value="STEM" group="1"/>
+            <group tag="NN" desc="noun" name="Case: Plural" uri="http://purl.org/olia/olia.owl#Plural" regex="(-MESZ|𒈩)" case="wordcase" value="PLURAL" group="2"/>
+        <group desc="noun" tag="NN" name="Case: Possessive First Singular" regex="^(-A|-YA|-IA|𒅀)$" group="3" case="declination" value="FIRST_SINGULAR"/>
+        <group desc="noun" tag="NN" name="Case: Possessive Second Singular" regex="^(-KA|𒂵|-KI|𒄀)$" group="3" case="declination" value="SECOND_SINGULAR"/>
+        <group desc="noun" tag="NN" name="Case: Possessive Third Singular" regex="^(-SZU|-ZU|𒋗)$" group="3" case="declination" value="THIRD_SINGULAR"/>
+        <group desc="noun" tag="NN" name="Case: Possessive Third Singular Female" regex="^(-SZA|𒐼)$" group="3" case="declination" value="THIRD_SINGULAR_FEMALE"/>	
+        <group desc="noun" tag="NN" name="Case: Possessive Second Plural" regex="^(-KU-NU|𒄀𒀝)$" group="3" case="declination" value="SECOND_PLURAL"/>
+        <group desc="noun" tag="NN" name="Case: Possessive Third Plural" regex="^(-SZU-NU|𒋗𒈿)$" group="3" case="declination" value="THIRD_PLURAL"/>	
+        <group desc="noun" tag="NN" name="Case: Possessive First Plural" regex="^(-NI|𒉌|-NU|𒉡)$" group="3" case="declination" value="FIRST_PLURAL"/>
+        <group desc="noun" tag="NN" name="Case: Accusative Singular Animate" regex="^(-an)$" group="3" case="declination" value="FIRST_PLURAL"/>
+        <group tag="NN" desc="noun" name="Case:  And/But" regex="(-ya|-a|𒅀|-ma|𒈠)$" case="wordcase" value="NONE" group="5"/>
+        <group tag="NN" desc="noun" name="Case:  Speech" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="([-]?wa-ra|(-)?wa(r)?|𒉿)$" case="wordcase" value="QUOTATIVE" group="6"/>
+       <group desc="noun" tag="NN" name="Case: Nominative" regex="^([-]?[aeiu]s)$" group="7" case="wordcase" value="NOMINATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Vocative" regex="^([-]?[aeiu]e)$" group="7" case="wordcase" value="VOCATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Accusative" regex="^([-]?[aeiu]n|[-]?na|[-]?us|𒀭|𒂗|𒅔|𒌦)$" group="7" case="wordcase" value="ACCUSATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Genitive" regex="^(-as|𒊍)$" group="7" case="wordcase" value="GENITIVE"/>
+        <group desc="noun" tag="NN" name="Case: Dative" regex="^([-]?i)$" group="7" case="wordcase" value="DATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Ablative" regex="^([-]?az(-a)?)$" group="7" case="wordcase" value="ABLATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Ergative" regex="^([-]?an-za)$" group="7" case="wordcase" value="ERGATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Allative" regex="^([-]?[^m]a)$" group="7" case="wordcase" value="ALLATIVE"/>
+        <group desc="noun" tag="NN" name="Case: Instrumental" regex="^([-]?az(-a)?)$" group="7" case="wordcase" value="INSTRUMENTAL"/>
+        <group tag="NN" desc="noun" name="Case:  Reflexive" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="((-)?za|𒍝)$" case="wordcase" value="REFLEXIVE" group="8"/>
+        <group tag="NN" desc="noun" name="Case:  Emphasis" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?pat|𒁁)$" case="wordcase" value="EMPHASIZE" group="9"/>
+        <group tag="NN" desc="noun" name="Case:  Locative" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?kan|(-)?pa|𒃷)$" case="wordcase" value="LOCATIVE" group="9"/>
+        </groupconfig>
+            <groupconfig tag="NE" desc="namedentity">
+        <group tag="NE" desc="namedentity" name="Stem: " regex="(.)*" case="stem" value="STEM" group="3"/>
+        <group tag="NE" desc="namedentity" name="Case:  And/But" regex="(-ya|-a|𒅀|-ma|𒈠)$" case="wordcase" value="NONE" group="4"/>
+        <group desc="namedentity" tag="NE" name="Case: Nominative" regex="^([-]?[aeiu]s)$" group="6" case="wordcase" value="NOMINATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Vocative" regex="^([-]?[aeiu]e)$" group="6" case="wordcase" value="VOCATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Accusative" regex="^([-]?[aeiu]n|[-]?us|𒀭|𒂗|𒅔|𒌦|𒍖)$" group="6" case="wordcase" value="ACCUSATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Genitive" regex="^(-as|𒊍)$" group="6" case="wordcase" value="GENITIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Dative" regex="^([-]?i|𒁲)$" group="6" case="wordcase" value="DATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Ablative" regex="^([-]?az(-a)?)$" group="6" case="wordcase" value="ABLATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Ergative" regex="^([-]?an-za)$" group="6" case="wordcase" value="ERGATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Allative" regex="^([-]?a)$" group="6" case="wordcase" value="ALLATIVE"/>
+        <group desc="namedentity" tag="NE" name="Case: Instrumental" regex="^([-]?az(-a)?)$" group="6" case="wordcase" value="INSTRUMENTAL"/>
+        <group tag="NE" desc="namedentity" name="Case:  Reflexive" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="((-)?za|𒍝)$" case="wordcase" value="REFLEXIVE" group="7"/>
+        <group tag="NE" desc="namedentity" name="Case:  Locative" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?kan|(-)?pa|𒃷)$" case="wordcase" value="LOCATIVE" group="8"/>
+        </groupconfig>
+      <groupconfig tag="NA" desc="nounoradj">
+        <group tag="NA" desc="nounoradj" name="Stem: " regex="(.)*" case="stem" value="STEM" group="2"/>
+        <group tag="NA" desc="nounoradj" name="Case:  And/But" regex="(-ya|𒅀|-a|-ma|𒈠)$" case="wordcase" value="NONE" group="3"/>
+        <group tag="NA" desc="nounoradj" name="Case:  Speech" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="([-]?wa-ra|𒉿𒊏|(-)?wa(r)?|𒉿)$" case="wordcase" value="QUOTATIVE" group="4"/>
+                <group desc="nounoradj" tag="NA" name="Case: Nominative" regex="^([-]?[aeiu]s)$" group="5" case="wordcase" value="NOMINATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Vocative" regex="^([-]?[aeiu]e)$" group="5" case="wordcase" value="VOCATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Accusative" regex="^([-]?[aeiu]n|[-]?us|𒀭|𒂗|𒅔|𒌦)$" group="5" case="wordcase" value="ACCUSATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Genitive" regex="^(-as|𒊍)$" group="5" case="wordcase" value="GENITIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Dative" regex="^([-]?i)$" group="5" case="wordcase" value="DATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Ablative" regex="^([-]?az(-a)?)$" group="5" case="wordcase" value="ABLATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Ergative" regex="^([-]?an-za)$" group="5" case="wordcase" value="ERGATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Allative" regex="^([-]?a)$" group="5" case="wordcase" value="ALLATIVE"/>
+        <group tag="NA" desc="nounoradj" name="Case: Instrumental" regex="^([-]?az(-a)?)$" group="5" case="wordcase" value="INSTRUMENTAL"/>
+	  <group tag="NA" desc="nounoradj" name="Possessive Suffix" regex="(-m[iau]s|-m[ai]n|-m[ei]t|-m[ai](t)?|-ti[snt]|-ta(s)?|-tit|-tus|-s[ai]s|-s[ai]n|-s[ei]t|-si|-sa|-sus)" case="tense" value="PRESENT" group="6"/>
+        <group tag="NA" desc="nounoradj" name="Case:  Reflexive" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="((-)?za|𒍝)$" case="wordcase" value="REFLEXIVE" group="7"/>
+          <group tag="NA" desc="nounoradj" name="Case:  Locative" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?kan|(-)?pa|𒃷)$" case="wordcase" value="LOCATIVE" group="8"/>
+         <group tag="NA" desc="nounoradj" name="Case:  Emphasis" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?pat|𒁁)$" case="wordcase" value="EMPHASIZE" group="8"/>
+      </groupconfig>
+            <groupconfig tag="CARD" desc="number">
+        <group tag="CARD" desc="number" name="Stem: " regex="(.)*" case="stem" value="STEM" group="1"/>
+	  <group tag="CARD" desc="number" name="Possessive Suffix" regex="(-anki|-is)" case="tense" value="times" group="2"/>
+	  <group tag="CARD" desc="number" name="Possessive Suffix" regex="(-an-na)" case="tense" value="th" group="2"/>
+          </groupconfig>
+      <groupconfig tag="CONJ" desc="conjunction">
+                              <group tag="CONJ" desc="conjunction" name="Stem: " regex="(.)*" case="stem" value="STEM" group="2"/>
+                    <group tag="CONJ" desc="conjunction" name="Case:  And/But" regex="(-ya|-a|𒅀)$" case="wordcase" value="NONE" group="3"/>
+          	  <group tag="CONJ" desc="conjunction" name="Case:  Speech" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="([-]?wa-ra|(-)?wa(r)?|𒉿)$" case="wordcase" value="QUOTATIVE" group="4"/>
+                    <group tag="CONJ" desc="conjunction" name="Case:  Reflexive" uri="http://purl.org/olia/olia.owl#DirectSpeech" regex="((-)?za|𒍝)$" case="wordcase" value="REFLEXIVE" group="7"/>
+                            <group tag="CONJ" desc="conjunction" name="Case: Nominative" regex="^([-]?[aeiu]s)$" group="5" case="wordcase" value="NOMINATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Vocative" regex="^([-]?[aeiu]e)$" group="5" case="wordcase" value="VOCATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Accusative" regex="^([-]?[aeiu]n|[-]?us|𒀭|𒂗|𒅔|𒌦)$" group="5" case="wordcase" value="ACCUSATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Genitive" regex="^(-as|𒊍)$" group="5" case="wordcase" value="GENITIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Dative" regex="^([-]?i|[-]?si|[-]?mu|𒈬)$" group="5" case="wordcase" value="DATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Ablative" regex="^([-]?az(-a)?)$" group="5" case="wordcase" value="ABLATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Ergative" regex="^([-]?an-za)$" group="5" case="wordcase" value="ERGATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Allative" regex="^([-]?a)$" group="5" case="wordcase" value="ALLATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Instrumental" regex="^([-]?az(-a)?)$" group="5" case="wordcase" value="INSTRUMENTAL"/>
+           <group tag="CONJ" desc="conjunction" name="Case: First Person Singular" uri="http://purl.org/olia/olia.owl#First" regex="([-]?mu)$" case="declination" value="FIRST_SINGULAR" group="5"/>
+          <group tag="CONJ" desc="conjunction" name="Case: Second Person Singular" uri="http://purl.org/olia/olia.owl#Second" regex="([-]?ta|[-]?tu)$" case="declination" value="SECOND_SINGULAR" group="5"/>
+          <group tag="CONJ" desc="conjunction" name="Case: Third Person Singular" uri="http://purl.org/olia/olia.owl#Third" regex="([-]?si|[-]?at|[-]?an|[-]?as)$" case="declination" value="THIRD_SINGULAR" group="5"/>
+        <group tag="CONJ" desc="conjunction" name="Case: Second Person Plural" regex="([-]?smas)$" case="declination" value="SECOND_PLURAL" group="5"/>
+          <group tag="CONJ" desc="conjunction" name="Case: Third Person Plural" regex="([-]?at|[-]?us|[-]?e)$" case="declination" value="THIRD_PLURAL" group="5"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Nominative" regex="^([-]?[aeiu]s|𒊍)$" group="6" case="wordcase" value="NOMINATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Vocative" regex="^([-]?[aeiu]e)$" group="6" case="wordcase" value="VOCATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Accusative" regex="^([-]?[aeiu]n|[-]?us)$" group="6" case="wordcase" value="ACCUSATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Genitive" regex="^(-as)$" group="6" case="wordcase" value="GENITIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Dative" regex="^([-]?i|[-]?si|[-]?mu|𒈬)$" group="6" case="wordcase" value="DATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Ablative" regex="^([-]?az(-a)?)$" group="6" case="wordcase" value="ABLATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Ergative" regex="^([-]?an-za)$" group="6" case="wordcase" value="ERGATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Allative" regex="^([-]?a)$" group="6" case="wordcase" value="ALLATIVE"/>
+        <group tag="CONJ" desc="conjunction" name="Case Object: Instrumental" regex="^([-]?az(-a)?)$" group="6" case="wordcase" value="INSTRUMENTAL"/>
+           <group tag="CONJ" desc="conjunction" name="Case Object: First Person Singular" uri="http://purl.org/olia/olia.owl#First" regex="([-]?mu)$" case="indirectobjectdeclination" value="FIRST_SINGULAR" group="6"/>
+          <group tag="CONJ" desc="conjunction" name="Case Object: Second Person Singular" uri="http://purl.org/olia/olia.owl#Second" regex="([-]?ta|[-]?tu)$" case="indirectobjectdeclination" value="SECOND_SINGULAR" group="6"/>
+          <group tag="CONJ" desc="conjunction" name="Case Object: Third Person Singular" uri="http://purl.org/olia/olia.owl#Third" regex="([-]?si|[-]?at|[-]?an|[-]?as)$" case="indirectobjectdeclination" value="THIRD_SINGULAR" group="6"/>
+          <group tag="CONJ" desc="conjunction" name="Case Object: First Person Plural" regex="([-]?na-as)$" case="indirectobjectdeclination" value="FIRST_PLURAL" group="6"/>
+          <group tag="CONJ" desc="conjunction" name="Case Object: Second Person Plural" regex="([-]?smas)$" case="indirectobjectdeclination" value="SECOND_PLURAL" group="6"/>
+          <group tag="CONJ" desc="conjunction" name="Case Object: Third Person Plural" regex="([-]?at|[-]?us|[-]?e)$" case="indirectobjectdeclination" value="THIRD_PLURAL" group="6"/>
+	  <group tag="CONJ" desc="conjunction" name="Case:  Locative" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?kan|(-)?pa|𒃷)$" case="wordcase" value="LOCATIVE" group="8"/>
+         <group tag="CONJ" desc="conjunction" name="Case:  Emphasis" uri="http://purl.org/olia/olia.owl#LocativeCase" regex="((-)?pat|𒁁)$" case="wordcase" value="EMPHASIZE" group="8"/>
+      </groupconfig>
+      
+    </groupconfigs>
+    <tags>
+        <tag desc="number" name="CARD" equals="" regex="^(𒁹)+$" target="disz" case="NUMBER" value="1"/>
+	<!-- Personal Pronouns -->
+	<tag desc="pronoun" name="PRO" regex="^(uk|u-ga)" equals="" case="FIRST_SINGULAR_NOMINATIVE" value="I" />
+	<tag desc="pronoun" name="PRO" regex="^(𒊌|𒌋𒂵)" equals="" case="FIRST_SINGULAR_NOMINATIVE" value="I" />
+	<tag desc="pronoun" name="PRO" regex="^(am-mu-uk|am-mu-ga|𒄠𒈬𒊌|𒄠𒈬𒂵)" equals="" case="FIRST_SINGULAR_AKKUSATIVE" value="me" />
+	<tag desc="pronoun" name="PRO" regex="^(am-me-el)" target="𒄠𒈨𒂖" equals="" case="FIRST_SINGULAR_GENITIVE" value="mine" />
+	<tag desc="pronoun" name="PRO" regex="^(𒄠𒈨𒂖)" target="am-me-el" equals="" case="FIRST_SINGULAR_GENITIVE" value="mine" />
+	<tag desc="pronoun" name="PRO" regex="^(am-mu-uk|u-ga)" equals="" case="FIRST_SINGULAR_LOCATIVE" value="to me" />
+	<tag desc="pronoun" name="PRO" regex="^(𒄠𒈬𒊌|𒌋𒂵)" equals="" case="FIRST_SINGULAR_LOCATIVE" value="to me" />
+	<tag desc="pronoun" name="PRO" regex="^(am-me-edaz(a)?)" equals="" case="FIRST_SINGULAR_ABLATIVE" value="from me" />
+	<tag desc="pronoun" name="PRO" regex="^(we-es)" target="𒉿𒄑" equals="" case="FIRST_PLURAL_NOMINATIVE" value="we" />
+	<tag desc="pronoun" name="PRO" regex="^(𒉿𒄑)" target="we-es" equals="" case="FIRST_PLURAL_NOMINATIVE" value="we" />
+	<tag desc="pronoun" name="PRO" regex="^(an-za-as)" target="𒀭𒍝𒊍" equals="" case="FIRST_PLURAL_AKKUSATIVE" value="us" />
+	<tag desc="pronoun" name="PRO" regex="^(𒀭𒍝𒊍)" target="an-za-as" equals="" case="FIRST_PLURAL_AKKUSATIVE" value="us" />
+	<tag desc="pronoun" name="PRO" regex="^(an-ze-el)" target="𒀭𒍣𒂖" equals="" case="FIRST_PLURAL_GENITIVE" value="our" />
+	<tag desc="pronoun" name="PRO" regex="^(𒀭𒍣𒂖)" target="an-ze-el" equals="" case="FIRST_PLURAL_GENITIVE" value="our" />
+	<tag desc="pronoun" name="PRO" regex="^(an-za-as)" equals="" case="FIRST_PLURAL_LOCATIVE" value="to us" />
+	<tag desc="pronoun" name="PRO" regex="^(an-ze-ed-az)$" target="𒀭𒍣𒀉𒊍" equals="" case="FIRST_PLURAL_ABLATIVE" value="from us" />
+	<tag desc="pronoun" name="PRO" regex="^(𒀭𒍣𒀉𒊍)$" target="an-ze-ed-az" equals="" case="FIRST_PLURAL_ABLATIVE" value="from us" />
+	<tag desc="pronoun" name="PRO" regex="^(zi-ik|zi-ga)" equals="" case="SECOND_SINGULAR_NOMINATIVE" value="you" />
+	<tag desc="pronoun" name="PRO" regex="^(𒍣𒅅|𒍣𒂵)" equals="" case="SECOND_SINGULAR_NOMINATIVE" value="you" />
+	<tag desc="pronoun" name="PRO" regex="^(tu-uk|tu-ga)" equals="" case="SECOND_SINGULAR_AKKUSATIVE" value="you" />
+	<tag desc="pronoun" name="PRO" regex="^(𒌅𒊌|𒌅𒂵)" equals="" case="SECOND_SINGULAR_AKKUSATIVE" value="you" />
+	<tag desc="pronoun" name="PRO" regex="^(tu-e-el)" target="𒌅𒂊𒂖" equals="" case="SECOND_SINGULAR_GENITIVE" value="your" />
+	<tag desc="pronoun" name="PRO" regex="^(𒌅𒂊𒂖)" target="tu-e-el" equals="" case="SECOND_SINGULAR_GENITIVE" value="your" />
+	<tag desc="pronoun" name="PRO" regex="^(tu-uk|tu-ga)" equals="" case="SECOND_SINGULAR_LOCATIVE" value="I" />
+	<tag desc="pronoun" name="PRO" regex="^(tu-e-ed-az)" target="𒌅𒂊𒀉𒊍" equals="" case="SECOND_SINGULAR_ABLATIVE" value="I" />
+	<tag desc="pronoun" name="PRO" regex="^(𒌅𒂊𒀉𒊍)" target="tu-e-ed-az" equals="" case="SECOND_SINGULAR_ABLATIVE" value="I" />
+	<tag desc="pronoun" name="PRO" regex="^(su-me-es)" equals="" case="SECOND_PLURAL_NOMINATIVE" value="you" />
+	<tag desc="pronoun" name="PRO" regex="^(su-um-ma-as)" equals="" case="SECOND_PLURAL_AKKUSATIVE" value="you" />
+	<tag desc="pronoun" name="PRO" regex="^(su-um-me-e-el)" equals="" case="SECOND_PLURAL_GENITIVE" value="your" />
+	<tag desc="pronoun" name="PRO" regex="^(su-um-me-es)" equals="" case="SECOND_PLURAL_LOCATIVE" value="to you" />
+	<tag desc="pronoun" name="PRO" regex="^(sume:daz)$" equals="" case="SECOND_PLURAL_ABLATIVE" value="from you" />
+        <tag desc="pronoun" name="PRO" regex="^(sze-el)$" equals="" case="THIRD_SINGULAR_GENITIVE" value="his;its" />
+        <tag desc="pronoun" name="PRO" regex="^(sze-ta-ni)$" equals="" case="THIRD_SINGULAR_LOCATIVE" value="to him;to it" /> 
+         <tag desc="pronoun" name="PRO" regex="^(sze-es)$" equals="" case="THIRD_SINGULAR_ABLATIVE" value="from him;from it" />
+
+	<!-- Interrogative Pronouns -->
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-is)$" target="𒆪𒄑" case="" value="who" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒄑)$" target="ku-is" case="" value="who" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-it(-pat)?)$" target="𒆪𒀉" case="" value="what" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒀉)$" target="ku-it" case="" value="what" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-e-da-ni)$" target="𒆪𒂊𒁕𒉌" case="" value="whom" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒂊𒁕𒉌)$" target="ku-e-da-ni" case="" value="whom" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-wat)$" case="" value="why" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-wa-pi(t)?)$" case="" value="where;when" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒉿(𒁉|𒂍))$" target="" case="" value="where;when" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(mah-han)$" case="" value="how" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒈤-han)$" case="" value="how" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(en-na-me-sze3|en-sze)$" case="" value="how long" />
+	<!-- Indefinite Pronouns -->
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-i[st]-k(i)?)$" case="" value="something" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒄑𒆠)$" case="" value="something" />
+        <tag desc="pronoun" name="PRO" equals="" regex="^(ta-m)" case="" value="other" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-in-ki)$" target="𒆪𒅔𒆠" case="" value="anyone" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒅔𒆠)$" target="ku-in-ki" case="" value="anyone" />
+	<!-- Demonstrative Pronouns -->
+	<tag desc="pronoun" name="PRO" equals="" regex="^(a-p(a(-as)?|u-(us)?|u-u-un)|a-pe-el|a-pe-da-ni|a-pe-ez|a-pe-e(t)?)(.*)$" case="" value="that" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒀀p(a(-as)?|u-(us)?)|𒀀𒁉𒂖|𒀀𒁉𒁕𒉌|𒀀𒁉𒄑|𒀀𒁉(𒀉|𒂊))(.*)$" case="" value="that" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ki-is-sa-an(-na)?)$" target="𒆠𒄑𒊓𒀭𒈾" case="" value="thus" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆠𒄑𒊓𒀭(𒈾)?)$" target="ki-is-sa-an-na" case="" value="thus" />
+        <tag desc="pronoun" name="PRO" equals="" regex="^(ka-a-as)$" target="" case="" value="behold" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ki-i-|ka-a-|𒆠𒄿|𒅗𒀀)(.*)$" target="" case="" value="this" />
+	
+	<tag desc="pronoun" name="PRO" equals="" regex="^(e-da-ni)$" target="𒂊𒁕𒉌" case="" value="this" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒂊𒁕𒉌)$" target="e-da-ni" case="" value="this" />
+	<!-- Relative Pronoun -->
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-i-sa)$" target="𒆪𒄿𒊭" case="" value="whoever" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒄿𒊭)$" target="ku-i-sa" case="" value="whoever" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(ku-e-ez)$" target="𒆪𒂊𒄑" case="" value="whatever" />
+	<tag desc="pronoun" name="PRO" equals="" regex="^(𒆪𒂊𒄑)$" target="ku-e-ez" case="" value="whatever" />
+	<!-- Prepositions -->
+	<tag desc="agent" name="PREP" equals="" regex="^(an-da(-an)?)$" target="𒀭𒁕" case="" value="in;into;at" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒀭𒁕)$" target="an-da" case="" value="in;into;at" />
+	<tag desc="agent" name="PREP" equals="" regex="^(I-NA)$" target="𒄿𒈾" case="" value="in;at" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒄿𒈾)$" target="I-NA" case="" value="in;at" />
+	<tag desc="agent" name="PREP" equals="" regex="^(A-NA)$" target="𒀀𒈾" case="" value="to" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒀀𒈾)$" target="A-NA" case="" value="to" />
+        	<tag desc="agent" name="PREP" equals="" regex="^(EGIR.*)" target="𒀀𒈾" case="" value="after" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒂕)" target="EGIR" case="" value="after" />
+                	<tag desc="agent" name="PREP" equals="" regex="^(a-ap-pa-an)" target="" case="" value="after" />
+                        <!--<tag desc="agent" name="PREP" equals="" regex="^(𒂕)" target="a-ap-pa-an" case="" value="after" />-->
+	<tag desc="agent" name="PREP" equals="" regex="^(PA-NI|PA-AN)$" case="" value="before;under" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒉺𒉌|𒉺𒀭)$" case="" value="before;under" />
+	<tag desc="agent" name="PREP" equals="" regex="^(ISZ-TU)$" target="𒅖𒌅" case="" value="from" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒅖𒌅)$" target="ISZ-TU" case="" value="from" />
+	<tag desc="agent" name="PREP" equals="" regex="^(SZA|SA)$" target="𒐼" case="" value="of" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒐼)$" target="SZA" case="" value="of" />
+	<tag desc="agent" name="PREP" equals="" regex="^(pe-ra-an)$" target="𒁉𒊏𒀭" case="" value="beside" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒁉𒊏𒀭)$" target="pe-ra-an" case="" value="beside" />
+	<tag desc="agent" name="PREP" equals="" regex="^(ma-ni-in-ku-wa-an)$" target="𒈠𒉌𒅔𒆪𒉿𒀭" case="" value="nearby;near" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒈠𒉌𒅔𒆪𒉿𒀭)$" target="ma-ni-in-ku-wa-an" case="" value="nearby;near" />
+	<tag desc="agent" name="PREP" equals="" regex="^(me-na-ah-ha-an-da)$" target="𒈨𒈾𒀪𒄩𒀭𒁕" case="PREP" value="against" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒈨𒈾𒀪𒄩𒀭𒁕)$" target="me-na-ah-ha-an-da" case="PREP" value="against" />
+	<tag desc="agent" name="PREP" equals="" regex="^(pa-an-ga-ri-it)$" target="𒉺𒀭𒂵𒊑𒀉" case="" value="in force" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒉺𒀭𒂵𒊑𒀉)$" target="pa-an-ga-ri-it" case="" value="in force" />
+	<tag desc="agent" name="PREP" equals="" regex="^(kat-ta)$" target="𒃰𒋫" case="" value="down" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒃰𒋫)$" target="kat-ta" case="" value="down" />
+	<tag desc="agent" name="PREP" equals="" regex="^(a-pi-ya)$" target="𒀀𒁉𒅀" case="" value="then;there" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒀀𒁉𒅀)$" target="a-pi-ya" case="" value="then;there" />	
+	<tag desc="agent" name="PREP" equals="" regex="^(ar-ha)$" target="𒅈𒄩" case="" value="far ahead;behind sb. back" />
+	<tag desc="agent" name="PREP" equals="" regex="^(𒅈𒄩)$" target="ar-ha" case="" value="far ahead;behind sb. back" />
+        <tag desc="agent" name="PREP" equals="" regex="^(is-tar-na)$" target="" case="" value="among" />
+        <tag desc="agent" name="PREP" equals="" regex="^(se-er)$" target="" case="" value="above" />
+        <tag desc="agent" name="PREP" equals="" regex="^(pa-ra-a)$" target="" case="" value="forth" />
+        <!--<tag desc="agent" name="PREP" equals="" regex="^()$" target="is-tar-na" case="" value="among" />-->
+	<!-- Interjections -->
+	<tag desc="agent" name="PRO" equals="" regex="^(ka-a-sa)$" target="𒅗𒀀𒊓" case="" value="behold" />
+	<tag desc="agent" name="PRO" equals="" regex="^(𒅗𒀀𒊓)$" target="ka-a-sa" case="" value="behold" />	
+        
+        
+	<!-- Conjunctions -->
+	<tag desc="conjunction" name="CONJ" equals="" regex="^([nt]a-as-[mt]a|nas𒋢)$" case="CONJ" value="or" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(𒈾𒊍𒈠|nas-su)$" case="CONJ" value="or" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(ma:n)$" case="CONJ" value="whether" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^((nu[-u]*?|na[-a]*?|ne[-e]*?|ta[-a]*?|sa[-a]*?|𒈾|𒉡|𒊓)(-ma|𒈠|-ya|𒅀)?([-]?wa-ra|[-]?wa[r]?|𒉿)?([-]?[aeiu]?s|[-]?[aeiu]e|[-]?[aeiu]n|𒀭|𒂗|𒅔|𒌦|[-]?as|𒊍|[-]?i|𒄿|[-]?si|𒅆|[-]?mu|𒈬|[-]?az-a|[-]?az|𒊍|[-]?an-za|[-]?a)?([-]?[aeiu]s|[-]?[aeiu]e|[-]?[aeiu]n|[-]?as|[-]?i|[-]?si|[-]?mu|[-]?az-a|[-]?az|[-]?an-za|[-]?a)?([-]?za|𒍝)?([t]?[-]?tak|[-]?kan|[-]?san|𒃷|[-]?pa[t]?|𒁁|[-]?a-pa|[-]?as-ta)*((-)(.*))?)$|^U3$|^𒅇$|^ta$" target="𒉡" case="CONJ" value="and" />
+        <!-- (-an|𒀭)? -->
+	<tag desc="conjunction" name="CONJ" equals="" regex="^((𒉡|𒈾)(𒊍)?(𒉿)?(𒃷)?(𒀭)?(𒊍)?)$" target="nu" case="CONJ" value="and" />
+	<tag desc="adverb" name="ADV" equals="" regex="^(ma-a-[a]?n|ma-ah-ha-an)(.*)$" target="𒈠𒀀𒀭" case="CONJ" value="when" />
+	<tag desc="adverb" name="ADV" equals="" regex="^(𒈠𒀀𒀭|𒈠𒀪𒄩𒀭)$" target="ma-a-an" case="CONJ" value="when" />	
+	<!--<tag desc="conjunction" name="CONJ" equals="" regex="^(ku-it)" target="𒆪𒀉" case="CONJ" value="because" />
+        <tag desc="conjunction" name="CONJ" equals="" regex="^(𒆪𒀉)$" target="ku-it" case="CONJ" value="because" />-->
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(nam-ma)$" target="𒉆𒈠" case="CONJ" value="furthermore;moreover" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(𒉆𒈠)$" target="nam-ma" case="CONJ" value="furthermore;moreover" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^((tak-ku|𒋳𒆭)(-ma|𒈠|-ya|𒅀)?([-]?wa-ra|[-]?wa[r]?|𒉿)?([-]?[aeiu]s|[-]?[aeiu]e|[-]?[aeiu]n|[-]?as|[-]?i|[-]?si|[-]?mu|[-]?az-a|[-]?az|[-]?an-za|[-]?a)?([-]?[aeiu]s|[-]?[aeiu]e|[-]?[aeiu]n|𒀭|𒂗|𒅔|𒌦|[-]?as|[-]?i|[-]?si|[-]?mu|[-]?az-a|[-]?az|[-]?an-za|[-]?a)?([-]?za|𒍝)?([-]?kan|[-]?san|𒃷|[-]?pa[t]?|[-]?a-pa|[-]?as-ta)?)$" target="𒁖𒆪" case="CONJ" value="if" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(𒁖𒆪(𒀭)?)$" target="tak-ku" case="CONJ" value="if" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(ku-e-et-ma-an-ma)$" target="𒆪𒂊𒀉𒈠𒀭𒈠" case="" value="but while" />
+	<tag desc="conjunction" name="CONJ" equals="" regex="^(𒆪𒂊𒀉𒈠𒀭𒈠)$" target="ku-e-et-ma-an-ma" case="" value="but while" /> 	
+	<tag desc="conjunction" name="CONJ" equals="" regex="^((ka-ru-u2|𒅗𒊒𒌑)(-ma|𒈠|-ya|𒄿𒀀)?([-]?wa-ra|[-]?wa[r]?|𒉿)?([-]?s|[-]?[aeiu]e|[-]?[aeiu]n|[-]?as|[-]?i|[-]?si|[-]?mu|[-]?az-a|[-]?az|[-]?an-za|[-]?a)?([-]?[aeiu]s|[-]?[aeiu]e|[-]?[aeiu]n|[-]?as|[-]?i|[-]?si|[-]?mu|[-]?az-a|[-]?az|[-]?an-za|[-]?a)?([-]?za|𒍝)?([-]?kan|[-]?san|𒃷|[-]?pa[t]?|[-]?a-pa|[-]?as-ta)?)$" target="𒅗𒊒𒌑" case="CONJ" value="previously" />
+        <!--<tag desc="conjunction" name="CONJ" equals="" regex="^(𒅗𒊒𒌑)" target="ka-ru-u2" case="CONJ" value="previously" />-->	
+        <tag desc="conjunction" name="CONJ" equals="" regex="^(an-ni-sa-an)" target="𒀭𒉌𒊭𒀭" case="CONJ" value="previously" />	
+	<!-- Verbs -->
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(-mi|-si|([-]?[aeiu]?[z])?-zi|-we-ni|-te-ni|[-]?an-zi|-nu-un|([-][b-df-hj-np-tv-z][u])?-un|[-]?[aeiou]?s|-t[a]?|-wen|[-]?[ei]?[t]?-t[ei]n|([-][b-df-hj-np-tv-z])?(a-a|e-e|i-i|u-u)?r|-[a]?llu|-i|([-][b-df-hj-np-tv-z])?(a-a|e-e|i-i|u-u)?t|-du|-we-ni|-an-du)(-ya|-ma)?([-]?wa-ra|[-]?wa[r]?)?(-za|-az)?(-(k|s)an|as-ta|a-pa)?$" case="Mi-Verb Active"/>
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(𒈪|𒋛|𒍣|𒉿𒉌|𒋼𒉌|𒀭𒍣|-[n]?un|-s|-t[a]?|-wen|𒁷|𒅕|-[a]?llu|𒄿|(-)?t|𒁺|𒀭𒁺)(𒉿)?(𒊍)?$" case="Mi-Verb Active"/>
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(𒄩(𒄩𒊑)?|𒄩𒄩𒊑|𒋫𒋾[𒋫]?|𒋫𒊑[𒋫]?|𒉿-sta(𒋾)?|𒁺𒈠(𒊑)?|𒀭𒋫(𒊑)?|𒄩𒄩(𒋾)?|𒄩(𒋾)?|𒍝|-t[a]?|-wen|[t]?-t[ei]n|-[ei]r|-[a]?llu|-i|-t|𒁺|𒉿𒉌|𒀭𒁺)(𒉿)?(𒊍)?$" case="Mi-Verb MedioPassive"/>	
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(-ha(-ha-ri)?|-ha-ha-ri|-ta-ti(-ta)?|-ta-ri(-ta)?|-wa-sta(-ti)?|-du-ma(-ri)?|-an-ta(-ri)?|-ha-ha(-ti)?|-ha(-ti)?|-s|-t[a]?|-wen|[t]?-t[ei]n|-[ei]r|-[a]?llu|-i|-t|-du|-we-ni|-an-du)(-ya|-ma)?([-]?wa-ra|wa[r]?)?(-za|-az)?(-(k|s)an|as-ta|a-pa)?$" case="Mi-Verb MedioPassive"/>	
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(𒄭|𒀪𒄭|𒋾|𒄿|𒉿𒉌|𒋼𒉌|𒀭𒍣|-hun|-s|𒋫|-sta|-wen|𒁷|𒅕|𒀠-lu|𒌋|𒀭𒁺)(𒉿)?(𒊍)?$" case="Hi-Verb Active"/>
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(-hi|-ah-hi|(-[aeiou])?-ti|[-]?i|-we-ni|-te-ni|[-]?an-zi|[-]?nu-un|[-]?un|-hun|-s|-ta|-sta|-wen|[t]?-t[ei]n|-[ei]r|-al-lu|-u|-we-ni|-an-du)(-ya|-ma)?([-]?wa-ra|[-]?wa[r]?)?(-za|-az)?(-(k|s)an|as-ta|a-pa)?$" case="Hi-Verb Active"/>
+	<tag desc="verb" name="VV" equals="" regex="^([^A-Z]*?)(-ha-ha-ri|-ha-ri|-ta-ti|-ta|-a-ri|-a|-wa-sta-ti|-wa-sta|-du-ma|an-ta-ri|an-ta|-ha-hat[i]?|-hat[i]?|-at[i]?|-tat|-an-ta-t[i]?|-ha-ha-ru|-ha-ru|-hut[i]?|-a-ru|-du-mat[i]?|-an-ta-ru)(-ya|-ma)?([-]?wa-ra|[-]?wa[r]?)?(-za|-az)?(-(k|s)an|as-ta|a-pa)?$" case="Hi-Verb MedioPassive"/>
+	<tag desc="determinative" name="DET" equals="" regex="^(D-|DINGIR-DISZ-|DUG-|E-|F-|GESZ-|GISZ-|HIA-|ID2-|IN-|IRI-|KI-|KUR-|KUSZ-|LA-|LUGAL-|M-|MESZ-|MEZ-|MI-|MUNUS-|MUSZEN-|NA4-|SIG2-|SZA10ME-|SZA10MEE-|SZA10MEI-|SZA10MI-|SZU-|TI-|TUG2-|TUG3-|U2-|UB-|URU-|URUDA-|URUDU-|USZ-|UT-|ZABAR-)+" case="DET"/>
+	<!--<tag desc="determinative" name="DET" equals="" regex="^(𒀭|𒃾|𒁹|𒂁|𒂊|null|𒄑|𒄑|null|null|𒆠|𒌷|𒆠|𒆳|𒋢|𒇲|𒇽|null|null|𒌍|𒋃|𒊩|𒊩|𒄷|𒌓|𒋠|null|null|null|null|𒋙|𒁲|𒌆|𒂁|𒌑|𒌒|𒌷|null|𒍏|𒍑|𒌓|null)+." case="DET"/>
+        <tag desc="noun" name="NN" equals="" regex="^(𒀭|𒃾|𒁹|𒂁|𒂊|null|𒄑|𒄑|null|null|𒆠|𒌷|𒆠|𒆳|𒋢|𒇲|𒇽|null|null|𒌍|𒋃|𒊩|𒊩|𒄷|𒌓|𒋠|null|null|null|null|𒋙|𒁲|𒌆|𒂁|𒌑|𒌒|𒌷|null|𒍏|𒍑|𒌓|null)+.*$" case="DET"/>-->
+        <!-- Numbers -->
+        <tag desc="number" name="CARD" equals="" regex="^([0-9]+)(-an-na|-an-ki|-is)?$" case="NUMBER" value=""/>
+        <tag desc="number" name="CARD" equals="" regex="disz-disz+.*|^disz$|^𒁹$" case="NUMBER" value="1"/>
+	<tag desc="number" name="CARD" equals="isz-ten" regex="" case="NUMBER" value="1"/>
+        <tag desc="number" name="CARD" equals="asz" regex="" case="NUMBER" value="1"/>
+        <tag desc="number" name="CARD" equals="" regex="^(min|2\(disz\)|𒈫)$" case="NUMBER" value="2" />
+        <tag desc="number" name="CARD" equals="szi-na" regex="" case="NUMBER" value="2" />
+        <tag desc="number" name="CARD" equals="" regex="^(esz|3\(disz\)|𒐁|𒐈)$" case="NUMBER" value="3" />
+        <tag desc="number" name="CARD" equals="sa-lasz" regex="" case="NUMBER" value="3" />
+        <tag desc="number" name="CARD" equals="" regex="^(limmu|4\(disz\)|𒐂|𒐉)$" case="NUMBER" value="4" />
+        <tag desc="number" name="CARD" equals="erbe" regex="" case="NUMBER" value="4" />
+        <tag desc="number" name="CARD" equals="" regex="^(ia|5\(disz\)|𒐃|𒐊)$" case="NUMBER" value="5" />
+        <tag desc="number" name="CARD" equals="ha-misz" regex="" case="NUMBER" value="5" />
+        <tag desc="number" name="CARD" equals="" regex="^(asz|6\(disz\)|𒐄|𒐋)$" case="NUMBER" value="6" />
+        <tag desc="number" name="CARD" equals="sze-disz" regex="" case="NUMBER" value="6" />
+        <tag desc="number" name="CARD" equals="" regex="^(imin|7\(disz\)|𒐅|𒐌)$" case="NUMBER" value="7" />
+        <tag desc="number" name="CARD" equals="sebe" regex="" case="NUMBER" value="7" />
+        <tag desc="number" name="CARD" equals="" regex="^(ussu|𒐆|𒐍)$" case="NUMBER" value="8" />
+        <tag desc="number" name="CARD" equals="samane" regex="" case="NUMBER" value="8" />
+        <tag desc="number" name="CARD" equals="" regex="^(ilimmu|𒐇|𒐎)$" case="NUMBER" value="9" />
+        <tag desc="number" name="CARD" equals="ti-sze" regex="" case="NUMBER" value="9" />
+        <tag desc="number" name="CARD" equals="" regex="^u-u+.*|^u$|^𒌋$" case="NUMBER" value="10" />
+        <tag desc="number" name="CARD" equals="e-szer" regex="" case="NUMBER" value="10" />
+        <tag desc="number" name="CARD" equals="u-disz" regex="" case="NUMBER" value="11" />
+        <tag desc="number" name="CARD" equals="isz-ten-sze-ret" regex="" case="NUMBER" value="11" />
+        <tag desc="number" name="CARD" equals="sa-lasz-szer" regex="" case="NUMBER" value="13" />
+        <tag desc="number" name="CARD" equals="se-be-szer" regex="" case="NUMBER" value="17" />
+        <tag desc="number" name="CARD" equals="" regex="^(nisz|2\(u\)|𒎙)$" case="NUMBER" value="20" />
+        <tag desc="number" name="CARD" equals="esz-ra" regex="" case="NUMBER" value="20" />
+        <tag desc="number" name="CARD" equals="" regex="^(3\(u\)|𒌍)$" case="NUMBER" value="30" />
+        <tag desc="number" name="CARD" equals="sza-la-sza" regex="" case="NUMBER" value="30" />
+        <tag desc="number" name="CARD" equals="" regex="^(4\(u\)|nimin|𒐏)$" case="NUMBER" value="40" />
+        <tag desc="number" name="CARD" equals="er-ba" regex="" case="NUMBER" value="40" />
+        <tag desc="number" name="CARD" equals="" regex="^(5\(u\)|ninnu|𒐐)$" case="NUMBER" value="50" />
+        <tag desc="number" name="CARD" equals="ham-sza" regex="" case="NUMBER" value="50" />
+        <tag desc="number" name="CARD" equals="" regex="^(6\(u\)|𒐑)$" case="NUMBER" value="60" />        
+        <tag desc="number" name="CARD" equals="" regex="^(gesz|𒐕)$" case="NUMBER" value="60" />
+        <tag desc="number" name="CARD" equals="szu-szi" regex="" case="NUMBER" value="60" />
+        <tag desc="number" name="CARD" equals="" regex="^(7\(u\)|𒐒)$" case="NUMBER" value="70" />
+        <tag desc="number" name="CARD" equals="" regex="^(8\(u\)|𒐓)$" case="NUMBER" value="80" />
+        <tag desc="number" name="CARD" equals="" regex="^(9\(u\)|𒐔)$" case="NUMBER" value="90" />
+        <tag desc="number" name="CARD" equals="" regex="^(ME|me|me-at|𒈨|𒈪)$" case="NUMBER" value="100" />
+        <tag desc="number" name="CARD" equals="ge-szu" regex="" case="NUMBER" value="600" />
+        <tag desc="number" name="CARD" equals="nerum" regex="" case="NUMBER" value="600" />
+        <tag desc="number" name="CARD" equals="" regex="^(LI-IM|li-im)$" case="NUMBER" value="1000" />
+        <tag desc="number" name="CARD" equals="limum" regex="" case="NUMBER" value="1000" />
+        <tag desc="number" name="CARD" equals="szar" regex="" case="NUMBER" value="3600" />
+        <tag desc="number" name="CARD" equals="" regex="^(szaru|𒐬)$" case="NUMBER" value="36000" />
+        <tag desc="number" name="CARD" equals="" regex="^(2\(szaru\)|𒐭)$" case="NUMBER" value="72000" />
+        <tag desc="number" name="CARD" equals="" regex="^(3\(szaru\)|𒐮|𒐯)$" case="NUMBER" value="108000" />
+        <tag desc="number" name="CARD" equals="" regex="^(4\(szaru\)|𒐰)$" case="NUMBER" value="144000" />
+        <tag desc="number" name="CARD" equals="" regex="^(5\(szaru\)|𒐱)$" case="NUMBER" value="180000" />
+        
+	<!--Particle-->
+	<tag desc="particle" name="PART" equals="" regex="^(le-e)$" target="𒇷𒂊" case="PART" value="not" />
+	<tag desc="adverb" name="ADV" equals="" regex="^(U2-UL(-ma)?.*)$" target="𒌑𒌌" case="ADV" value="not" />
+	<tag desc="adverb" name="ADV" equals="" regex="^(𒌑𒌌(𒈣)?)$" target="U2-UL" case="ADV" value="not" />
+        <tag desc="particle" name="PART" equals="" regex="^(𒇷𒂊)$" target="le-e" case="PART" value="not" />
+	<tag desc="particle" name="PART" equals="" regex="^(nat-ta)$" target="" case="PART" value="not" />
+	<tag desc="particle" name="PART" equals="" regex="^(na-wi|na-a-wi)$" target="" case="PART" value="not yet" />
+	<tag desc="particle" name="PART" equals="" regex="^(𒈾𒉿|𒈾𒀀𒉿)$" target="" case="PART" value="not yet" />
+	<tag desc="particle" name="PART" equals="" regex="(-kan)$" target="𒃷" case="PART" value="in;locative" />	
+	<tag desc="particle" name="PART" equals="" regex="(𒃷)$" target="kan" case="PART" value="in;locative" />
+	<tag desc="particle" name="PART" equals="" regex="(-wa(r)?)$" target="𒉿" case="PART" value="';quotative" />
+	<tag desc="particle" name="PART" equals="" regex="(𒉿)$" target="wa" case="PART" value="';quotative" />
+	<tag desc="particle" name="PART" equals="" regex="(-sa-an)$" target="𒊓𒀭" case="PART" value="on" />
+	<tag desc="particle" name="PART" equals="" regex="(𒊓𒀭)$" target="sa-an" case="PART" value="on" />
+        <tag desc="namedentity" name="NE" equals="" regex="^(D-|𒀭|DISZ-|𒁹|DUG-|𒂁|𒂍|F-|𒊩|HIA-|ID2-|IN-|IRI-|𒆠|M-|MESZ-|MEZ-|MI-|MUSZEN-|NA4-|SIG2-|SZA10ME-|SZA10MEE-|SZA10MEI-|SZA10MI-|TI-|TUG2-|TUG3-|UB-|URU-|𒌷|URUDA-|URUDU-|USZ-|UT-|ZABAR-)+(([A-Z][A-z0-9,-]+?|[A-Z-]+?)(-ma|𒈠|-ya|𒅀)?(-wa-ra|𒉿𒊏|-wa|𒉿)?([-]?[aeiu]s|[-]?[aeiu]e|[-]?[aeiu]n|[-]?n[aeiu]|[-]?as|𒊍|[-]?i|[-]?az(-a)?|[-]?an-za|[-]?a)?(-za|𒍝)?(-kan|𒃷)?|[𒀀-𒎙]+)$" case="NE"/>
+        
+        
+        <!--|[A-Z]{1,2}-->
+        <!--<tag desc="noun" name="NN" equals="" regex="^([A-Z-0-9])+(-MESZ)?(-A|-YA|-I|-KA|-KI|-SZU|-SZA|-KU-NU|-SZU-NU|-NI|-NU)?(-hi|-ah-hi|-ti|(-)?i|-we-ni|-te-ni|-an-zi|-hun|-s|-ta|-sta|-wen|[t]?-t[ei]n|-[ei]r|-al-lu|-u|-we-ni|-an-du)?(-(y)a|-ma)?(wa(r)?)?(-as|-at)?(-an|-us|-at|-e)?(-za|-az)?(-(k|s)an|-as-ta|-a-pa|-pat)?$" case="SUM"/>-->
+        <tag desc="noun" name="NN" equals="" regex="^([A-Z-0-9,]+?|[𒀀-𒎙]+?)(-MESZ|-HI-A|𒌊|𒎌)?(-A|-YA|-IA|𒅀|-I|𒄿|-KA|𒂵|-KI|𒄀|-SZU|𒋗|-ZU|-SZA|-SZI|𒐼|-KU-NU|𒄀𒀝|-SZU-NU|𒋗𒈿|-NI|𒉌|-NU|𒉡|-LUM|-LIM|-RU)?(-[a-z0-9-]+?)?(-ma|𒈠|-ya|𒅀)?(-wa-ra|𒉿𒊏|-wa|𒉿)?([-]?as|[-]?[eiu]s|[-]?[aeiu]e|[-]?[aeiu]n|𒀭|𒂗|𒅔|𒌦|[-]?n[aeiu]|𒊍|[-]?i|[-]?az-a|[-]?az|[-]?an-za|[-]?a)?(-za|𒍝)?(-kan|𒃷)?$" case="SUM"/>
+        <tag desc="nounoradj" name="NA" equals="" regex="^(([a-z0-9-]*?|[𒀀-𒎙]*?)(-ma|𒈠|[-]?ya|𒅀)?([-]?wa-ra|𒉿𒊏|[-]?wa|𒉿)?([-]?[aeiu]s|[-]?[aeiu]e|[-]?[aeiu]n|𒀭|𒂗|𒅔|𒌦|[-]?n[aeiu]|[-]?as|𒊍|[-]?i|[-]?az-a|[-]?az|[-]?an-za|[-]?a)(-an|a-atar|es-sar|-as-ti|-att|-i-ma|-ul|-ur|[u]?war|-a-ai|-sha|e-el|ze-el|-tar[a]?|-talla|-a-la|-se-pa|-uz-zi|-al-li|-ant|-i-li)?(-m[iau]-[iau]s|-m[ai]n|-m[ei]t|-m[ai][t]?|-ti[snt]|-ta[s]?|-tit|-tus|-s[ai]s|-s[ai]n|-s[ei]t|-si|-[s]?a|-sus)?([-]?s|-za|𒍝)?([-]?kan|[-]?san|𒃷|[-]?pa[t]?|[-]?a-pa|[-]?as-ta)?)$" case="NOMINATIVE_SINGULAR"/>
+	<tag desc="noun" name="NN" equals="" regex="^((A[-]?|A2[-]?|AB[-]?|AD[-]?|AG[-]?|AG2[-]?|AH[-]?|AK[-]?|AL[-]?|ALAM[-]?|ALIM[-]?|AM[-]?|AMA[-]?|AMAR[-]?|AN[-]?|ANSZE[-]?|AP[-]?|APIN[-]?|AR[-]?|ARAD2[-]?|ASZ[-]?|ASZ2[-]?|AT,[-]?|AZ[-]?|BA[-]?|BABBAR[-]?|BAD[-]?|BAD3[-]?|BAL[-]?|BAN[-]?|BANSZUR[-]?|BAR[-]?|BE[-]?|BE2[-]?|BI[-]?|BI2[-]?|BIL[-]?|BU[-]?|BUGIN[-]?|BURU14[-]?|DA[-]?|DAH[-]?|DAL[-]?|DAM[-]?|DAR[-]?|DARA3[-]?|DE2[-]?|DI[-]?|DIB[-]?|DIDLI[-]?|DIL[-]?|DIN[-]?|DINGIR[-]?|DISZ[-]?|DU[-]?|DU10[-]?|DU3[-]?|DUB[-]?|DUB2[-]?|DUG[-]?|DUGUD[-]?|DUL[-]?|DUMU[-]?|E[-]?|E2[-]?|EDIN[-]?|EGER[-]?|EGIR[-]?|EME[-]?|EN[-]?|EP[-]?|ERIN[-]?|ERIN2[-]?|ESI[-]?|ESZ2[-]?|EZEM[-]?|GA[-]?|GA2[-]?|GAB[-]?|GADA[-]?|GAG[-]?|GAL[-]?|GAL2[-]?|GAM[-]?|GAN[-]?|GAN2[-]?|GAR[-]?|GAR3[-]?|GASZAN[-]?|GAZ[-]?|GESZ[-]?|GESZTIN[-]?|GI[-]?|GI4[-]?|GIBIL[-]?|GID2[-]?|GIG[-]?|GIGIR[-]?|GIN2[-]?|GIN3[-]?|GIR2[-]?|GIR3[-]?|GIRI3[-]?|GISZ[-]?|GU[-]?|GU2[-]?|GU4[-]?|GU5[-]?|GU7[-]?|GUB[-]?|GUG[-]?|GUL[-]?|GUN3[-]?|GUR[-]?|GUR11[-]?|HA[-]?|HAR[-]?|HASZHUR[-]?|HE2[-]?|HI[-]?|HU[-]?|HUL[-]?|HUR[-]?|I[-]?|I3[-]?|IA[-]?|IB[-]?|IB2[-]?|ID[-]?|IG[-]?|IGI[-]?|IL3[-]?|IM[-]?|IN[-]?|IN4[-]?|INIM[-]?|IR[-]?|IRI[-]?|IS,[-]?|ISZ[-]?|ISZIB[-]?|ISZKUR[-]?|ITI[-]?|IZ[-]?|IZI[-]?|KA[-]?|KA2[-]?|KA4[-]?|KAK[-]?|KAL[-]?|KAM[-]?|KAM2[-]?|KAM3[-]?|KAR[-]?|KAR2[-]?|KASKAL[-]?|KASZ[-]?|KI[-]?|KIN[-]?|KIRI6[-]?|KISZIB[-]?|KISZIB3[-]?|KU3[-]?|KU5[-]?|KUL[-]?|KUM[-]?|KUR[-]?|KUR2[-]?|KUSZ[-]?|LA[-]?|LA2[-]?|LAL[-]?|LAL3[-]?|LAM[-]?|LAM2[-]?|LAMMA[-]?|LI[-]?|LI2[-]?|LIM[-]?|LISZ[-]?|LU[-]?|LU2[-]?|LUGAL[-]?|LUH[-]?|LUL[-]?|MA[-]?|MA2[-]?|MAH[-]?|MAL[-]?|MAR[-]?|MASZ[-]?|MASZ2[-]?|ME[-]?|ME2[-]?|ME3[-]?|MI[-]?|MIN[-]?|MU[-]?|MUN[-]?|MUNUS[-]?|MUSZ[-]?|MUSZEN[-]?|NA[-]?|NA2[-]?|NA4[-]?|NAGAR[-]?|NAM[-]?|NE[-]?|NI[-]?|NI2[-]?|NIG2[-]?|NIGA[-]?|NIGIN2[-]?|NIM[-]?|NIN[-]?|NINDA[-]?|NUMUN[-]?|NUN[-]?|PA[-]?|PAN[-]?|PESZ3[-]?|PI[-]?|PI2[-]?|PU[-]?|PU2[-]?|QE2[-]?|QI2[-]?|RA[-]?|RAB3[-]?|RE[-]?|RI[-]?|RIG2[-]?|RU[-]?|S,A[-]?|S,E[-]?|S,U2[-]?|SA[-]?|SA3[-]?|SAG[-]?|SAGSZU[-]?|SAHAR[-]?|SAR[-]?|SE3[-]?|SI[-]?|SI2[-]?|SI3[-]?|SIG[-]?|SIG17[-]?|SIG2[-]?|SIG3[-]?|SIG4[-]?|SIG5[-]?|SIKI[-]?|SIL[-]?|SILA[-]?|SILA3[-]?|SIPA[-]?|SIR2[-]?|SU[-]?|SUD[-]?|SUKKAL[-]?|SZA[-]?|SZA10[-]?|SZA2[-]?|SZA3[-]?|SZAB[-]?|SZAH[-]?|SZE[-]?|SZEN[-]?|SZESZ[-]?|SZI[-]?|SZID[-]?|SZIM[-]?|SZIR3[-]?|SZU2[-]?|T,I[-]?|TA[-]?|TAB[-]?|TAG[-]?|TAG2[-]?|TAH[-]?|TAL[-]?|TAR[-]?|TASZKARIN[-]?|TE[-]?|TESZ2[-]?|TI[-]?|TIL[-]?|TIM[-]?|TIR[-]?|TU[-]?|TU4[-]?|TUG2[-]?|TUK[-]?|TUK2[-]?|TUKUL[-]?|TUL2[-]?|TUM[-]?|TUR[-]?|U[-]?|U2[-]?|U3[-]?|U4[-]?|UB[-]?|UBUR3[-]?|UD[-]?|UD5[-]?|UDU[-]?|UG[-]?|UGULA[-]?|UM[-]?|UN[-]?|UR[-]?|UR2[-]?|UR5[-]?|URTA[-]?|URU[-]?|URUDU[-]?|US2[-]?|USAN[-]?|USZ[-]?|USZ2[-]?|UT[-]?|UTU[-]?|UZ[-]?|UZU[-]?|WA[-]?|ZA[-]?|ZA3[-]?|ZI[-]?|ZU[-]?|ZU2[-]?|ZUM[-]?|ZUR[-]?)+)(-MESZ)?(-A|-YA|-I|-KA|-KI|-SZU|-SZA|-KU-NU|-SZU-NU|-NI|-NU)?$" case="SUM"/>
+        
+        <!--<tag desc="noun" name="NN" equals="" regex="^.*(([-]?(𒀀|𒀉|𒀊|𒀜|𒀝|AG2|AH|AK|AL|ALAM|ALIM|AM|AMA|AMAR|AN|ANSZE|AP|APIN|AR|ARAD2|ASZ|ASZ2|AT,|AZ|BA|BABBAR|BAD|BAD3|BAL|BAN|BANSZUR|BAR|BE|BE2|BI|BI2|BIL|BU|BUGIN|BURU14|D|DA|DAH|DAL|DAM|DAR|DARA3|DE2|DI|DIB|DIDLI|DIL|DIN|DINGIR|DISZ|DU|DU10|DU3|DUB|DUB2|DUG|DUGUD|DUL|DUMU|E|E2|EDIN|EGER|EGIR|EME|EN|EP|ERIN|ERIN2|ESI|ESZ2|EZEM|GA|GA2|GAB|GADA|GAG|GAL|GAL2|GAM|GAN|GAN2|GAR|GAR3|GASZAN|GAZ|GESZ|GESZTIN|GI|GI4|GIBIL|GID2|GIG|GIGIR|GIN2|GIN3|GIR2|GIR3|GIRI3|GISZ|GU|GU2|GU4|GU5|GU7|GUB|GUG|GUL|GUN3|GUR|GUR11|HA|HAR|HASZHUR|HE2|HI|HU|HUL|HUR|I|I3|IA|IB|IB2|ID|IG|IGI|IL3|IM|IN|IN4|INIM|IR|IRI|IS,|ISZ|ISZIB|ISZKUR|ITI|IZ|IZI|KA|KA2|KA4|KAK|KAL|KAM|KAM2|KAM3|KAR|KAR2|KASKAL|KASZ|KI|KIN|KIRI6|KISZIB|KISZIB3|KU|KU3|KU5|KUL|KUM|𒆳|KUR2|KUSZ|LA|LA2|LAL|LAL3|LAM|LAM2|LAMMA|LI|LI2|LIM|LISZ|LU|LU2|LUGAL|LUH|LUL|MA|MA2|MAH|MAL|MAR|MASZ|MASZ2|ME|ME2|ME3|MI|MIN|MU|MUN|MUNUS|MUSZ|MUSZEN|NA|NA2|NA4|NAGAR|NAM|NE|NI|NI2|NIG2|NIGA|NIGIN2|NIM|NIN|NINDA|NU|NUMUN|NUN|PA|PAN|PESZ3|PI|PI2|PU|PU2|QE2|QI2|RA|RAB3|RE|RI|RIG2|RU|S,A|S,E|S,U2|SA|SA3|SAG|SAGSZU|SAHAR|SAR|SE3|SI|SI2|SI3|SIG|SIG17|SIG2|SIG3|SIG4|SIG5|SIKI|SIL|SILA|SILA3|SIPA|SIR2|SU|SUD|SUKKAL|SZA|SZA10|SZA2|SZA3|SZAB|SZAH|SZE|SZEN|SZESZ|SZI|SZID|SZIM|SZIR3|SZU|SZU2|T,I|TA|TAB|TAG|TAG2|TAH|TAL|TAR|TASZKARIN|TE|TESZ2|TI|TIL|TIM|TIR|TU|TU4|TUG2|TUK|TUK2|TUKUL|TUL2|TUM|TUR|U|U2|U3|U4|UB|UBUR3|UD|UD5|UDU|UG|UGULA|UM|UN|UR|UR2|UR5|URTA|URU|URUDU|US2|USAN|USZ|USZ2|UT|UTU|UZ|UZU|WA|ZA|ZA3|ZI|ZU|ZU2|ZUM|ZUR))+)(-MESZ)?(-YA)?$" case="SUM"/> -->
+        
+        
+	
+	</tags>
+        </data> 

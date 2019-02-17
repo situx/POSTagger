@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.kennycason</groupId>
             <artifactId>kumo</artifactId>
-            <version>1.11</version>
+            <version>1.17</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/nl.flotsam/xeger -->
         <dependency>

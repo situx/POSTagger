@@ -16,7 +16,7 @@ jobs:
     - name: Create Javadoc Documentation 🔧
       run: |
          cd src
-         javadoc -Xdoclint:none -d docs/html/ -subpackages  com.github.situx.postagger
+         javadoc -Xdoclint:none -d ../docs/html/ -subpackages  com.github.situx.postagger
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:

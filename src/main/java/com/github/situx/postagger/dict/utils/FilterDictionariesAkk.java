@@ -112,7 +112,7 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                 if(origvalue!=null)
                     origvalue=origvalue.toLowerCase().trim();
                 if(needToSeparate){
-                    origvalue= syllsep.separateAkkadian(origvalue.replace("ʾ",""),"-").replace("--","-");
+                    origvalue= syllsep.separateAkkadian(origvalue.replace("Ê¾",""),"-").replace("--","-");
                 }
                 if(file1bool){
                     //this.file1.put(origvalue,new MorphPattern());
@@ -120,7 +120,7 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                     this.destvalue = StringEscapeUtils.escapeXml10(attributes.getValue("destvalue"));
                     //this.destlocale = new Locale(attributes.getValue("destlocale"));
                     String[] trans=syllsep.prepareTranslations(destvalue, destlocale);
-                    if(!referparse && trans.length!=0 && !destvalue.contains("→")) {
+                    if(!referparse && trans.length!=0 && !destvalue.contains("â†’")) {
                         for(String orival:origvalue.split(",")){
                             StringBuilder xmltree=new StringBuilder();
                             try {
@@ -154,7 +154,7 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                     }
                                 }
                                 orival = orival.replace("(", "").replace(")", "")
-                                        .replace("ṣ", "s").replace("*", "");
+                                        .replace("á¹£", "s").replace("*", "");
 
                                 String tocuneify;
                                 String infinitive="";
@@ -169,19 +169,19 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                             .replace("- ", " ")
                                             .replace(" -", " ")
                                             .replace("--", "-")
-                                            .replace("š", "sz");
-                                    tocuneify = infinitive.replace("ū", "u")
-                                            .replace("ā", "a")
-                                            .replace("ē", "e")
-                                            .replace("ī", "i")
-                                            .replace("ê", "e")
-                                            .replace("â", "a")
-                                            .replace("û", "u")
-                                            .replace("î", "i")
-                                            .replace("š", "sz")
-                                            .replace("ṣ", "s")
-                                            .replace("ṭ", "t")
-                                            .replace("ḫ", "h")
+                                            .replace("Å¡", "sz");
+                                    tocuneify = infinitive.replace("Å«", "u")
+                                            .replace("Ä�", "a")
+                                            .replace("Ä“", "e")
+                                            .replace("Ä«", "i")
+                                            .replace("Ãª", "e")
+                                            .replace("Ã¢", "a")
+                                            .replace("Ã»", "u")
+                                            .replace("Ã®", "i")
+                                            .replace("Å¡", "sz")
+                                            .replace("á¹£", "s")
+                                            .replace("á¹­", "t")
+                                            .replace("á¸«", "h")
                                             .replace("(", "").replace(")", "");
                                     xmltree.append(infinitive);
                                     xmltree.append("</transliteration>").append(System.lineSeparator());
@@ -206,18 +206,18 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                     xmltree.append(stem);
                                     xmltree.append("</transliteration>").append(System.lineSeparator());
                                 }else{
-                                    tocuneify = orival.replace("ū", "u")
-                                            .replace("ā", "a")
-                                            .replace("ē", "e")
-                                            .replace("ī", "i")
-                                            .replace("ê", "e")
-                                            .replace("â", "a")
-                                            .replace("û", "u")
-                                            .replace("î", "i")
-                                            .replace("š", "sz")
-                                            .replace("ṣ", "s")
-                                            .replace("ṭ", "t")
-                                            .replace("ḫ", "h")
+                                    tocuneify = orival.replace("Å«", "u")
+                                            .replace("Ä�", "a")
+                                            .replace("Ä“", "e")
+                                            .replace("Ä«", "i")
+                                            .replace("Ãª", "e")
+                                            .replace("Ã¢", "a")
+                                            .replace("Ã»", "u")
+                                            .replace("Ã®", "i")
+                                            .replace("Å¡", "sz")
+                                            .replace("á¹£", "s")
+                                            .replace("á¹­", "t")
+                                            .replace("á¸«", "h")
                                             .replace("(", "").replace(")", "");
                                     xmltree.append("<transliteration transcription=\"").append(tocuneify.replace("-", "").replaceAll("[0-9]", "")).append("\">");
                                     xmltree.append(tocuneify);
@@ -342,11 +342,11 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                 e.printStackTrace();
                             }
                         }
-                    }else if(referparse && destvalue.contains("→")) {
-                        if(!refer.containsKey(destvalue.replace("→",""))){
-                            refer.put(destvalue.replace("→",""),new TreeSet<>());
+                    }else if(referparse && destvalue.contains("â†’")) {
+                        if(!refer.containsKey(destvalue.replace("â†’",""))){
+                            refer.put(destvalue.replace("â†’",""),new TreeSet<>());
                         }
-                        refer.get(destvalue.replace("→","")).add(origvalue);
+                        refer.get(destvalue.replace("â†’","")).add(origvalue);
                     }
                     this.file1.put(origvalue, new MorphPattern());
                 }else if(!file1bool){
@@ -355,7 +355,7 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                         this.destvalue = StringEscapeUtils.escapeXml10(attributes.getValue("destvalue"));
                         //this.destlocale = new Locale(attributes.getValue("destlocale"));
                         String[] trans=syllsep.prepareTranslations(destvalue, destlocale);
-                        if(!referparse && trans.length!=0 && !destvalue.contains("→")) {
+                        if(!referparse && trans.length!=0 && !destvalue.contains("â†’")) {
                             for(String orival:origvalue.split(",")){
                                 StringBuilder xmltree=new StringBuilder();
                                 try {
@@ -390,7 +390,7 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                         }
                                     }
                                     orival = orival.replace("(", "").replace(")", "")
-                                            .replace("ṣ", "s").replace("*", "");
+                                            .replace("á¹£", "s").replace("*", "");
                                     String tocuneify;
                                     String infinitive="";
                                     if(!nostem) {
@@ -404,19 +404,19 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                                 .replace("- ", " ")
                                                 .replace(" -", " ")
                                                 .replace("--", "-")
-                                                .replace("š", "sz");
-                                        tocuneify = infinitive.replace("ū", "u")
-                                                .replace("ā", "a")
-                                                .replace("ē", "e")
-                                                .replace("ī", "i")
-                                                .replace("ê", "e")
-                                                .replace("â", "a")
-                                                .replace("û", "u")
-                                                .replace("î", "i")
-                                                .replace("š", "sz")
-                                                .replace("ṣ", "s")
-                                                .replace("ṭ", "t")
-                                                .replace("ḫ", "h")
+                                                .replace("Å¡", "sz");
+                                        tocuneify = infinitive.replace("Å«", "u")
+                                                .replace("Ä�", "a")
+                                                .replace("Ä“", "e")
+                                                .replace("Ä«", "i")
+                                                .replace("Ãª", "e")
+                                                .replace("Ã¢", "a")
+                                                .replace("Ã»", "u")
+                                                .replace("Ã®", "i")
+                                                .replace("Å¡", "sz")
+                                                .replace("á¹£", "s")
+                                                .replace("á¹­", "t")
+                                                .replace("á¸«", "h")
                                                 .replace("(", "").replace(")", "");
                                         xmltree.append(infinitive);
                                         xmltree.append("</transliteration>" + System.lineSeparator());
@@ -441,18 +441,18 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                             xmltree.append("</transliteration>").append(System.lineSeparator());
                                         }
                                     }else{
-                                        tocuneify = orival.replace("ū", "u")
-                                                .replace("ā", "a")
-                                                .replace("ē", "e")
-                                                .replace("ī", "i")
-                                                .replace("ê", "e")
-                                                .replace("â", "a")
-                                                .replace("û", "u")
-                                                .replace("î", "i")
-                                                .replace("š", "sz")
-                                                .replace("ṣ", "s")
-                                                .replace("ṭ", "t")
-                                                .replace("ḫ", "h")
+                                        tocuneify = orival.replace("Å«", "u")
+                                                .replace("Ä�", "a")
+                                                .replace("Ä“", "e")
+                                                .replace("Ä«", "i")
+                                                .replace("Ãª", "e")
+                                                .replace("Ã¢", "a")
+                                                .replace("Ã»", "u")
+                                                .replace("Ã®", "i")
+                                                .replace("Å¡", "sz")
+                                                .replace("á¹£", "s")
+                                                .replace("á¹­", "t")
+                                                .replace("á¸«", "h")
                                                 .replace("(", "").replace(")", "");
                                         xmltree.append("<transliteration transcription=\"").append(tocuneify.replace("-", "").replaceAll("[0-9]", "")).append("\">");
                                         xmltree.append(tocuneify);
@@ -576,11 +576,11 @@ public class FilterDictionariesAkk extends DefaultHandler2 {
                                     e.printStackTrace();
                                 }
                             }
-                        }else if(referparse && destvalue.contains("→")) {
-                            if(!refer.containsKey(destvalue.replace("→",""))){
-                                refer.put(destvalue.replace("→",""),new TreeSet<>());
+                        }else if(referparse && destvalue.contains("â†’")) {
+                            if(!refer.containsKey(destvalue.replace("â†’",""))){
+                                refer.put(destvalue.replace("â†’",""),new TreeSet<>());
                             }
-                            refer.get(destvalue.replace("→","")).add(origvalue);
+                            refer.get(destvalue.replace("â†’","")).add(origvalue);
                         }
                         this.file2.put(origvalue, new MorphPattern());
                     }else{

@@ -62,14 +62,14 @@ public class SyllableSeparator extends DefaultHandler2 {
         vowels.add("i");
         vowels.add("o");
         vowels.add("u");
-        vowels.add("ū");
-        vowels.add("ā");
-        vowels.add("ē");
-        vowels.add("ī");
-        vowels.add("ê");
-        vowels.add("â");
-        vowels.add("û");
-        vowels.add("î");
+        vowels.add("Å«");
+        vowels.add("Ä�");
+        vowels.add("Ä“");
+        vowels.add("Ä«");
+        vowels.add("Ãª");
+        vowels.add("Ã¢");
+        vowels.add("Ã»");
+        vowels.add("Ã®");
         client= HttpClients.createDefault();
         writer=new BufferedWriter(new FileWriter(new File("akkdictwithsyllsep.xml")));
         writer.write("<? xml version=\"1.1\"?>"+System.lineSeparator());
@@ -222,7 +222,7 @@ public class SyllableSeparator extends DefaultHandler2 {
                 this.destvalue = attributes.getValue("destvalue");
                 this.destlocale = new Locale(attributes.getValue("destlocale"));
                 String[] trans=this.prepareTranslations(destvalue, destlocale);
-                if(!referparse && trans.length!=0 && !destvalue.contains("→")) {
+                if(!referparse && trans.length!=0 && !destvalue.contains("â†’")) {
                     for(String orival:origvalue.split(",")){
                         try {
                             writer.write("<dictentry ref=\"akkdict\"");
@@ -242,26 +242,26 @@ public class SyllableSeparator extends DefaultHandler2 {
                                 }
                             }
                             orival = orival.replace("(", "").replace(")", "")
-                                    .replace("ṣ", "s").replace("*", "");
+                                    .replace("á¹£", "s").replace("*", "");
                             writer.write("<transliteration transcription=\"" + orival + "\">");
                             String infinitive = this.separateAkkadian(orival, "-");
                             infinitive = infinitive
                                     .replace("- ", " ")
                                     .replace(" -", " ")
                                     .replace("--", "-")
-                                    .replace("š", "sz");
-                            String tocuneify = infinitive.replace("ū", "u")
-                                    .replace("ā", "a")
-                                    .replace("ē", "e")
-                                    .replace("ī", "i")
-                                    .replace("ê", "e")
-                                    .replace("â", "a")
-                                    .replace("û", "u")
-                                    .replace("î", "i")
-                                    .replace("š", "sz")
-                                    .replace("ṣ", "s")
-                                    .replace("ṭ", "t")
-                                    .replace("ḫ", "h")
+                                    .replace("Å¡", "sz");
+                            String tocuneify = infinitive.replace("Å«", "u")
+                                    .replace("Ä�", "a")
+                                    .replace("Ä“", "e")
+                                    .replace("Ä«", "i")
+                                    .replace("Ãª", "e")
+                                    .replace("Ã¢", "a")
+                                    .replace("Ã»", "u")
+                                    .replace("Ã®", "i")
+                                    .replace("Å¡", "sz")
+                                    .replace("á¹£", "s")
+                                    .replace("á¹­", "t")
+                                    .replace("á¸«", "h")
                                     .replace("(", "").replace(")", "");
                             writer.write(infinitive);
                             writer.write("</transliteration>" + System.lineSeparator());
@@ -342,11 +342,11 @@ public class SyllableSeparator extends DefaultHandler2 {
                             e.printStackTrace();
                         }
                     }
-                }else if(referparse && destvalue.contains("→")) {
-                    if(!refer.containsKey(destvalue.replace("→",""))){
-                        refer.put(destvalue.replace("→",""),new TreeSet<>());
+                }else if(referparse && destvalue.contains("â†’")) {
+                    if(!refer.containsKey(destvalue.replace("â†’",""))){
+                        refer.put(destvalue.replace("â†’",""),new TreeSet<>());
                     }
-                    refer.get(destvalue.replace("→","")).add(origvalue);
+                    refer.get(destvalue.replace("â†’","")).add(origvalue);
                 }
                 //System.out.println(refer);
                 break;
@@ -364,16 +364,16 @@ public class SyllableSeparator extends DefaultHandler2 {
         syllsep.writer.close();
     }
 /*
-                String input="amēlānu";
+                String input="amÄ“lÄ�nu";
                 String infinitive=syllsep.separateAkkadian(input,"-");
-                String tocuneify=infinitive.replace("ū","u")
-                        .replace("ā","a")
-                        .replace("ē","e")
-                        .replace("ī","i")
-                        .replace("ê","e")
-                        .replace("â","a")
-                        .replace("û","u")
-                        .replace("î","i");
+                String tocuneify=infinitive.replace("Å«","u")
+                        .replace("Ä�","a")
+                        .replace("Ä“","e")
+                        .replace("Ä«","i")
+                        .replace("Ãª","e")
+                        .replace("Ã¢","a")
+                        .replace("Ã»","u")
+                        .replace("Ã®","i");
                 String stem="";
                 if(infinitive.charAt(infinitive.length()-1)=='u'){
                     stem=infinitive.substring(0,infinitive.length()-1);
